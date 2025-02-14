@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#$(unsetproxy)
+#sudo systemctl stop clash
+wget -O config.yaml https://4e633173.ghelper.me/subs/clash/a86f98784e6331737c76af1aeee857ad
+
+src_start=1
+src_stop=24
+src_file="config.yamlbak"
+
+dest_start=1
+dest_stop=14
+dest_file="config.yaml"
+
+sed -i "$dest_start,$dest_stop d" $dest_file
+
+insert_line=$dest_start
+for i in $(seq $src_start $src_stop); do
+    content=$(sed -n "$i p" $src_file)
+    # echo $i
+    sed -i "$insert_line i\\$content" $dest_file
+    insert_line=$(expr $insert_line + 1)
+done
+#sed -i 's/^ //g' $dest_file
+
+
+#export http_proxy=http://127.0.0.1:7890
+#export https_proxy=http://127.0.0.1:7890
+
+sudo systemctl restart clash

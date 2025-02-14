@@ -8,7 +8,7 @@ from datetime import datetime
 backup_items = [
     '/home/bulescy/.bashrc',
     '/home/bulescy/.tmux.conf',
-    '/home/bulescy/testcpy',
+    '/home/bulescy/.config/clash/update.sh',
 ]
 
 # 日志文件名
